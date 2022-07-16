@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.9" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.14.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.14.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\General.Common\General.Common\General.Common.csproj" />
+    <ProjectReference Include="..\..\General.Infrastructure\General.EFCore\General.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\..\General.Infrastructure\General.Infrastructure.APIGateway.Client\General.Infrastructure.APIGateway.Client.csproj" />
+    <ProjectReference Include="..\General.Core.Models\General.Core.csproj" />
+  </ItemGroup>
+
+</Project>
