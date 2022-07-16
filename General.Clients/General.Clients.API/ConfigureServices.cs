@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using General.Cars.Core.Entities;
+using General.Common.EmailSender;
+using General.Common.Logging;
+using General.Core.Application;
+using General.Infrastructure.EFCore.EntityContext;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using General.Cars.Core.Entities;
-using General.Common.EmailSender;
-using General.Common.Logging;
-using General.Core.Application;
-using General.Infrastructure.EFCore.EntityContext;
 using System.Text;
 
 namespace General.Clients.API
@@ -21,7 +21,7 @@ namespace General.Clients.API
 		{
 			services.AddSingleton<IEmailSender, SendGridSender>();
 			services.AddSingleton<ILogger, TelemetryManager>();
-			services.AddDbContext<RowEntityContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+			services.AddDbContext<GeneralEntityContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddApplication(Configuration);
 			services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
 			{
@@ -29,7 +29,7 @@ namespace General.Clients.API
 				opt.Password.RequireDigit = true;
 				opt.Password.RequireUppercase = true;
 				opt.User.RequireUniqueEmail = true;
-			}).AddEntityFrameworkStores<RowEntityContext>().AddDefaultTokenProviders();
+			}).AddEntityFrameworkStores<GeneralEntityContext>().AddDefaultTokenProviders();
 			services.AddControllers();
 			AddCORS(services, Configuration);
 			AddJWT(services, Configuration);

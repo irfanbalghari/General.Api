@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.JsonWebTokens;
-using Microsoft.IdentityModel.Tokens;
-using General.Cars.Core.Entities;
+﻿using General.Cars.Core.Entities;
 using General.Common.Logging;
 using General.Core.Application.Dto.AppUser;
 using General.Core.Application.Dto.Token;
@@ -12,6 +7,10 @@ using General.Core.Application.Interfaces.Auth;
 using General.Core.Application.Wrappers;
 using General.Core.Repositories;
 using General.Infrastructure.EFCore.EntityContext;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +28,9 @@ namespace General.Core.Application.Services.AppUser
 		private readonly IConfiguration configuration;
 		private readonly ILogger logger;
 		private readonly IUserRepository userRepository;
-		private readonly RowEntityContext _dbContext;
+		private readonly GeneralEntityContext _dbContext;
 
-		public AuthService(RowEntityContext dbContext, UserManager<ApplicationUser> userManager, IAccountService accountService, ITokenService tokenService, IConfiguration configuration, ILogger logger, IUserRepository userRepository)
+		public AuthService(GeneralEntityContext dbContext, UserManager<ApplicationUser> userManager, IAccountService accountService, ITokenService tokenService, IConfiguration configuration, ILogger logger, IUserRepository userRepository)
 		{
 			this.userManager = userManager;
 			this.accountService = accountService;

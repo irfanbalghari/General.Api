@@ -1,9 +1,5 @@
 ﻿
 using AutoMapper;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using General.Cars.Core.Entities;
 using General.Common.Constants;
 using General.Common.EmailSender.Models;
@@ -21,6 +17,10 @@ using General.Core.Application.Interfaces.AppUser;
 using General.Core.Application.Wrappers;
 using General.Core.Repositories;
 using General.Infrastructure.EFCore.EntityContext;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +33,7 @@ namespace General.Core.Application.Feature.UserManagement.Service
 	{
 		private readonly UserManager<ApplicationUser> userManager;
 		private readonly IAccountService accountService;
-		private readonly RowEntityContext dbContext;
+		private readonly GeneralEntityContext dbContext;
 		private readonly ICommunication communicationService;
 		private readonly Password _password;
 		private IHostingEnvironment env;
@@ -45,7 +45,7 @@ namespace General.Core.Application.Feature.UserManagement.Service
 		Microsoft.Extensions.Configuration.IConfiguration config;
 		private IUserProfile profile;
 
-		public UserManagementService(RowEntityContext dbContext, IAccountService accountService, UserManager<ApplicationUser> userManager,
+		public UserManagementService(GeneralEntityContext dbContext, IAccountService accountService, UserManager<ApplicationUser> userManager,
 			ICommunication communicationService, IOptions<Password> password, IHostingEnvironment env, SignInManager<ApplicationUser> signInManager,
 			 IUserRepository userRepository, ILogger logger, IMapper mapper, Microsoft.Extensions.Configuration.IConfiguration config, IUserProfile profile)
 		{

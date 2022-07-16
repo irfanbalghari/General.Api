@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using General.Core.Entities;
+﻿using General.Core.Entities;
 using General.Core.Repositories;
 using General.Infrastructure.EFCore.EntityContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace General.Infrastructure.EFCore.Repositories
 {
@@ -9,7 +9,7 @@ namespace General.Infrastructure.EFCore.Repositories
 	{
 		private readonly DbSet<UserProfile> _context;
 
-		public UserProfileRepository(RowEntityContext dbContext) : base(dbContext)
+		public UserProfileRepository(GeneralEntityContext dbContext) : base(dbContext)
 		{
 			_context = dbContext.Set<UserProfile>();
 		}

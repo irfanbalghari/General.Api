@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 namespace General.Infrastructure.EFCore
 {
 	public class SchemaSeeder
-    {
-        public void Execute(RowEntityContext context)
-        {
+	{
+		public void Execute(GeneralEntityContext context)
+		{
 
-            string dropProcedure = @"IF EXISTS (SELECT * FROM sys.procedures WHERE object_id = OBJECT_ID(N'[dbo].[SP_USERLIST]')) BEGIN  DROP PROCEDURE SP_USERLIST END";
+			string dropProcedure = @"IF EXISTS (SELECT * FROM sys.procedures WHERE object_id = OBJECT_ID(N'[dbo].[SP_USERLIST]')) BEGIN  DROP PROCEDURE SP_USERLIST END";
 
 
 
-            string createProc = @"
+			string createProc = @"
   
   
 CREATE PROCEDURE SP_USERLIST     
@@ -87,8 +87,8 @@ DROP TABLE   #tmp
 ";
 
 
-            string dropFunc = @"IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FUNC_SPLIT]')) BEGIN  DROP FUNCTION FUNC_SPLIT END";
-            string createFunc = @"
+			string dropFunc = @"IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FUNC_SPLIT]')) BEGIN  DROP FUNCTION FUNC_SPLIT END";
+			string createFunc = @"
 CREATE FUNCTION FUNC_SPLIT  
 (   
  -- Add the parameters for the function here  
@@ -102,9 +102,9 @@ SELECT [value]  As [value]
 FROM STRING_SPLIT(@stringValue, ',')  
 )  
 ";
-            string dropFunc1 = @"IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FUNC_GETROLENAMES]')) BEGIN  DROP FUNCTION FUNC_GETROLENAMES END";
+			string dropFunc1 = @"IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[FUNC_GETROLENAMES]')) BEGIN  DROP FUNCTION FUNC_GETROLENAMES END";
 
-            string createFunc1 = @"
+			string createFunc1 = @"
 CREATE FUNCTION FUNC_GETROLENAMES  
 (  
     -- Add the parameters for the function here  
@@ -124,12 +124,12 @@ WHERE UserId=@UserId
     RETURN @RoleNames  
 END  ";
 
-            context.Database.ExecuteSqlRaw(dropFunc);
-            context.Database.ExecuteSqlRaw(createFunc);
-            context.Database.ExecuteSqlRaw(dropFunc1);
-            context.Database.ExecuteSqlRaw(createFunc1);
-            context.Database.ExecuteSqlRaw(dropProcedure);
-            context.Database.ExecuteSqlRaw(createProc);
-        }
-    }
+			context.Database.ExecuteSqlRaw(dropFunc);
+			context.Database.ExecuteSqlRaw(createFunc);
+			context.Database.ExecuteSqlRaw(dropFunc1);
+			context.Database.ExecuteSqlRaw(createFunc1);
+			context.Database.ExecuteSqlRaw(dropProcedure);
+			context.Database.ExecuteSqlRaw(createProc);
+		}
+	}
 }

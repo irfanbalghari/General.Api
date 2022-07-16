@@ -1,10 +1,10 @@
+using General.Common.Logging;
+using General.Infrastructure.EFCore;
+using General.Infrastructure.EFCore.EntityContext;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using General.Common.Logging;
-using General.Infrastructure.EFCore;
-using General.Infrastructure.EFCore.EntityContext;
 using System;
 
 namespace General.Clients.API
@@ -38,7 +38,7 @@ namespace General.Clients.API
 				var loggerFactory = services.GetRequiredService<ILogger>();
 				try
 				{
-					var dbContext = services.GetRequiredService<RowEntityContext>();
+					var dbContext = services.GetRequiredService<GeneralEntityContext>();
 					try
 					{
 						if (dbContext.Database.IsSqlServer())
